@@ -1,6 +1,6 @@
 package runner
 
-import dictionary.TranslatorApi.translations
+import dictionary.TranslatorApi.{translate, translations}
 import util.Utils.toText
 
 case class WordCounter( stream: Stream[String] = Stream.empty) {
@@ -17,8 +17,7 @@ case class WordCounter( stream: Stream[String] = Stream.empty) {
       foldLeft(Map.empty[String, Int].
         withDefaultValue(0)) {
         case (counts, word) =>
-          if (counts.keysIterator.contains(translations(word))) counts.updated(translations(word), counts(translations(word)) + 1) else counts.updated(word, 1)
-        case _ => Map.empty[String, Int]
+          if (counts.keysIterator.contains(translate(word))) counts.updated(translate(word), counts(translate(word)) + 1) else counts.updated(word, 1)
 
       }
 

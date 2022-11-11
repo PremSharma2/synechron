@@ -5,7 +5,7 @@ class WordCounterTest extends FlatSpec with Matchers {
 
   "wordCounter" should "correctly store the input with considering all obligations " in {
     // Given
-    
+
      val wordCount: WordCounter = WordCounter()
     val input = Seq("flower", "flor", "blume")
 
@@ -42,6 +42,7 @@ class WordCounterTest extends FlatSpec with Matchers {
     val outputSummary= wordCount.updateCount(numberOFWordsAdded)
 
     // Then
+    outputSummary.size should be(1)
     outputSummary.head._2 should be(3)
   }
 
@@ -60,5 +61,17 @@ class WordCounterTest extends FlatSpec with Matchers {
   }
 
 
+  "WordCounter" should "correctly calculate the number of counts and size of counts should be 1 with only single input " in {
+    // Given
+    val wordCount: WordCounter = WordCounter()
+    val input = "flower"
+
+    // When
+    val outputSummary = wordCount.addWord(input)
+
+
+    // Then
+    outputSummary.size should be(1)
+  }
 
 }

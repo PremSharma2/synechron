@@ -3,15 +3,16 @@ import runner.WordCounter
 
 class WordCounterTest extends FlatSpec with Matchers {
 
-  "Checkout" should "correctly calculate the value of a shopping cart" in {
+  "wordCounter" should "correctly store the input with considering all obligations " in {
     // Given
-
+    
+     val wordCount: WordCounter = WordCounter()
     val input = Seq("flower", "flor", "blume")
 
     // When
-    val outputSummary = WordCounter.addWord(input : _*)
+    val outputSummary = wordCount.addWord(input : _*)
 
-    // The
+    // Then
     outputSummary.size should be(3)
   }
 
@@ -19,42 +20,42 @@ class WordCounterTest extends FlatSpec with Matchers {
 
   "WordCounter" should "correctly calculate the number of counts and size of counts should be 1" in {
     // Given
-
+    val wordCount: WordCounter = WordCounter()
     val input = Seq("flower", "flor", "blume")
 
     // When
-    val numberOFWordsAdded = WordCounter.addWord(input : _*)
-    val outputSummary= WordCounter.updateCount(numberOFWordsAdded)
+    val numberOFWordsAdded = wordCount.addWord(input : _*)
+    val outputSummary= wordCount.updateCount(numberOFWordsAdded)
 
-    // The
+    // Then
     outputSummary.size should be(1)
   }
 
 
   "WordCounter" should "correctly calculate the number of counts of word which has same meaning in different language should be 3" in {
     // Given
-
+    val wordCount: WordCounter = WordCounter()
     val input = Seq("flower", "flor", "blume")
 
     // When
-    val numberOFWordsAdded = WordCounter.addWord(input : _*)
-    val outputSummary= WordCounter.updateCount(numberOFWordsAdded)
+    val numberOFWordsAdded = wordCount.addWord(input : _*)
+    val outputSummary= wordCount.updateCount(numberOFWordsAdded)
 
-    // The
+    // Then
     outputSummary.head._2 should be(3)
   }
 
 
   "WordCounter" should "result in no words Added As input was corrupt " in {
     // Given
-
+    val wordCount: WordCounter = WordCounter()
     val input = Seq("1", "2", "2")
 
     // When
-    val outputSummary = WordCounter.addWord(input : _*)
+    val outputSummary = wordCount.addWord(input : _*)
 
 
-    // The
+    // Then
     outputSummary.size should be(0)
   }
 

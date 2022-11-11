@@ -3,8 +3,7 @@ package runner
 import dictionary.TranslatorApi.translations
 import util.Utils.toText
 
-object WordCounter {
-  val stream: Stream[String] = Stream.empty[String]
+case class WordCounter( stream: Stream[String] = Stream.empty) {
 
   def addWord(words: String*): Stream[String] = {
     val regex = "[a-z]+".r
